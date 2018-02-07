@@ -25,6 +25,7 @@ public class UserInput
             {
                 out.print(prompt);
                 input = sc.nextInt();
+                sc.flush();
                 cont = false;
             }//END TRY
             catch(InputMismatchException imex)
@@ -34,7 +35,6 @@ public class UserInput
                 sc.next();
                 cont = true;
             }//END CATCH
-
         }while(cont);
         return input;
     }//END getInteger
@@ -45,8 +45,8 @@ public class UserInput
         Scanner sc = new Scanner(System.in);
 
         out.print(prompt);
-        sc.reset();
-        input = sc.nextLine();
+        input = sc.next();
+        out.println(input);
         return input;
     }//END getString
 }//END class UserInput

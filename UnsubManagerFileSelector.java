@@ -28,9 +28,10 @@ public class UnsubManagerFileSelector
 
         numberOfFiles = UserInput.getInteger(promptOne);
         subscriberFileList = new String[numberOfFiles];
-        for(int ii=0;ii<=numberOfFiles;ii++)
+        for(int ii=0;ii<subscriberFileList.length;ii++)
         {
-            subscriberFileList[ii] = UserInput.getString(promptTwo);
+            subscriberFileList[ii] = UserInput.getString(promptTwo+ii);
+            out.println(subscriberFileList[ii]);
         }//ENDFOR
         return subscriberFileList;
     }//END chooseSubList
