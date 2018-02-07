@@ -6,13 +6,15 @@
 
 //IMPROTS
 import java.util.InputMismatchException;
+import java.util.Scanner;
+
 import static java.lang.System.out;
 
 public class UserInput
 {
     public static int getInteger(String prompt)
     {
-        int input;
+        int input = 0;
         boolean cont = true;
         Scanner sc = new Scanner(System.in);
 
@@ -31,9 +33,9 @@ public class UserInput
                 sc.reset();
                 sc.next();
                 cont = true;
-            }
+            }//END CATCH
 
-        }while(cont)
+        }while(cont);
         return input;
     }//END getInteger
 

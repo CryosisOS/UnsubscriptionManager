@@ -35,12 +35,13 @@ public class Menu
         unSubFile = UnsubManagerFileSelector.chooseUnsubList();
         subFiles = UnsubManagerFileSelector.chooseSubList();
         unSubList = UnsubManagerFileReader.readUnsubscribeFile(unSubFile);
+        subLists = new ArrayList[subFiles.length];
         for(int ii=0;ii<subFiles.length;ii++)
         {
-            subLists.add(UnsubManagerFileReader.readStringFromFile(subFiles[ii]));
+            subLists[ii].addAll(UnsubManagerFileReader.readStringsFromFile(subFiles[ii]));
         }//END FOR
-        subList = UnsubManagerSublist.createList(subLists);
-        subList = UnsubManagerUpdateSublist.updateList()
+        subList = UnsubManagerSubList.createSubList(subLists);
+        subList = UnsubManagerUpdateSublist.updateList(unSubList, subList);
         UnsubManagerWriteNewCSVFiles.sortListToWrite(subList);
 
     }//END getLists

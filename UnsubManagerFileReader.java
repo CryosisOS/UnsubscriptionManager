@@ -21,11 +21,13 @@ public class UnsubManagerFileReader
     {
         List<Subscriber> subscribers = new ArrayList<>();
         Path pathToFile = Paths.get(inFilename);
+        BufferedReader bufRdr = null;
 
         //Create an instance of BufferedReader
         //Using try with resource, Java 7 feature to close resources is being used.
-        try(BufferedReader bufRdr = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII))
+        try
         {
+            bufRdr = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII);
             //Read the first line of the csv file
             String line = bufRdr.readLine();//Skip the first line.
             line = bufRdr.readLine();
@@ -63,11 +65,13 @@ public class UnsubManagerFileReader
     {
         List<Subscriber> subscribers = new ArrayList<>();
         Path pathToFile = Paths.get(inFilename);
+        BufferedReader bufRdr = null;
 
         //Create an instance of BufferedReader
         //Using try with resource, Java 7 feature to close resources is being used.
-        try(BufferedReader bufRdr = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII))
+        try
         {
+            bufRdr = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII);
             //Read the first line of the csv file
             String line = bufRdr.readLine();
             line = bufRdr.readLine();//Skip the first line.
@@ -110,13 +114,13 @@ public class UnsubManagerFileReader
     private static boolean validateFileName(String inFilename)
     {
         boolean isValid = false;
-        Path pathToFile = Paths.get(inFilename)
-        File file = new File(pathToFile);
+        Path pathToFile = Paths.get(inFilename);
+        File file = new File(pathToFile.toString());
         if(file.exists() && !file.isDirectory())
         {
             isValid = true;
         }//ENDIF
-        return isValid
+        return isValid;
     }//END validateFileName
 
 }//END class FileReader

@@ -12,7 +12,7 @@ public class UnsubManagerFileSelector
     public static String chooseUnsubList()
     {
         String unsubList;
-        String promptTwo = "Please enter in the name of the list that contains the list of unsubscribers: ";
+        String prompt = "Please enter in the name of the list that contains the list of unsubscribers: ";
 
         unsubList = UserInput.getString(prompt);
         return unsubList;
@@ -26,7 +26,7 @@ public class UnsubManagerFileSelector
         String promptTwo = "Please enter in a filename that contains a part of the current subscriber list: ";
 
 
-        numberOfFiles = UserInput.getInteger(prompt);
+        numberOfFiles = UserInput.getInteger(promptOne);
         subscriberFileList = new String[numberOfFiles];
         for(int ii=0;ii<=numberOfFiles;ii++)
         {

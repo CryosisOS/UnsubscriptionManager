@@ -7,7 +7,10 @@
 //IMPORTS
 
 
-public static void main(String[] args) 
+public class run
 {
-    Menu.mainMenu();
-}//END 
+	public static void main(String[] args) 
+	{
+    	Menu.mainMenu();
+	}//END main
+}//END class run

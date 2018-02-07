@@ -6,14 +6,16 @@
 
 //IMPORTS
 import java.util.List;
+import java.util.Iterator;
 
 public class UnsubManagerUpdateSublist
 {
-    public static List<Subscriber> updateList(List<Subscriber> unSubList, List<Subscriber> subList) implements Iterator
+    public static List<Subscriber> updateList(List<Subscriber> unSubList, List<Subscriber> subList)
     {
-        for(Iterator<Subscriber> iterator = subList.iterator();iterator.hasNext();)
+        int ii = 0;
+        for(Iterator<Subscriber> iterator = subList.iterator();iterator.hasNext(); ii++)
         {
-            if(iterator.next().getEmail().equals(unSubList.getEmail))
+            if(iterator.next().getEmail().equals(unSubList.get(ii).getEmail()))
             {
                 iterator.remove();
             }//ENDIF

@@ -41,7 +41,7 @@ public class Subscriber
 		company = inDetails[0];
 		street = inDetails[1];
 		suburb = inDetails[2];
-		state =  = inDetails[3];
+		state = inDetails[3];
 		postcode = inDetails[4];
 		phone = inDetails[5];
 		fax = inDetails[6];

@@ -5,18 +5,18 @@
  */
 
 //IMPORTS
-import java.util.ArrayList<E>;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UnsubManagerSubList
 {
     public static List<Subscriber> createSubList(ArrayList<Subscriber>[] inSubscriberFileLists)
     {
-        List<Subscriber> subscriberList;
+        List<Subscriber> subscriberList = new ArrayList<Subscriber>();
 
         for(int ii=0;ii<=inSubscriberFileLists.length;ii++)
         {
-            subscriber.addAll(inSubscriberFileLists[ii]);
+            subscriberList.addAll(inSubscriberFileLists[ii]);
         }//ENDFOR
         return subscriberList;
     }//END createSubList

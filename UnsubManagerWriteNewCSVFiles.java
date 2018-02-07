@@ -8,7 +8,7 @@
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList<E>;
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.System.out;
@@ -21,13 +21,13 @@ public class UnsubManagerWriteNewCSVFiles
         int numFiles = 1;
         int newLength = newSubList.size();
         String filename;
-        ArrayList<Subscriber>[] = (ArrayList<Subscriber>[])new ArrayList[numFiles];
+        ArrayList<Subscriber>[] subLists = (ArrayList<Subscriber>[])new ArrayList[numFiles];
 
         if(newSubList.size() < 5300)
         {
             numFiles = length / 5300;
             newLength = length / numFiles;
-            ArrayList<Subscriber>[] subLists = (ArrayList<Subscriber>[])new ArrayList[numFiles];
+            subLists = (ArrayList<Subscriber>[])new ArrayList[numFiles];
         }//ENDIF
 
         while(newSubList.size() != 0)
@@ -36,7 +36,7 @@ public class UnsubManagerWriteNewCSVFiles
             {
                 for(int ii=0;ii<=subLists.length;ii++)
                 {
-                    if(subLists[ii].length < newLength)
+                    if(subLists[ii].size() < newLength)
                     {
                         if(newSubList.size() == 0)
                         {
@@ -55,7 +55,7 @@ public class UnsubManagerWriteNewCSVFiles
         }//ENDFOR
     }//END writeNewFiles
 
-    public static void WriteListToFile(List<Subscriber> inList, String filename)
+    public static void writeListToFile(List<Subscriber> inList, String filename)
     {
         BufferedWriter bufWtr = null;
         FileWriter fileWtr = null;
@@ -66,7 +66,7 @@ public class UnsubManagerWriteNewCSVFiles
             bufWtr = new BufferedWriter(fileWtr);
             for(int ii=0;ii<inList.size();ii++)
             {
-                bufWtr.write(inList.get(ii).toString);
+                bufWtr.write(inList.get(ii).toString());
             }//END FOR
             bufWtr.close();
         }//END TRY
