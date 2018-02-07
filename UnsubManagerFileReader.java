@@ -1,7 +1,7 @@
 /**
  * Author: Nathan van der Velde
  * Date Created: 2018-02-06
- * Date Last Modified: 2018-02-06
+ * Date Last Modified: 2018-02-07
  */
 
 //IMPORTS
@@ -17,34 +17,7 @@ import java.util.List;
 
 public class UnsubManagerFileReader
 {
-    //CLASS FIELDS
-    private String filename;
-    private List<Subscriber> subscribers;
-
-
-    // DEFAULT CONSTRUCTOR
-    public FileReader()
-    {
-        //Just to defeat instantiation
-    }//END DEFAULT CONSTRUCTOR
-
-
-    //ALTERNATE CONSTRUCTOR
-    public FileReader(String inFilename) throws IOException
-    {
-        if(validateFileName(inFilename))
-        {
-            filename = inFilename;
-            emails = readStringsFromFile(filename);
-        }
-        else
-        {
-            throw new IOException("The file does not exists");
-        }//ENDIF
-    }//END ALTERNATE CONSTRUCTOR
-
-
-    public List<Subscriber> readUnsubscribeFile(String inFilename) throws IOException
+    public static List<Subscriber> readUnsubscribeFile(String inFilename)
     {
         List<Subscriber> subscribers = new ArrayList<>();
         Path pathToFile = Paths.get(inFilename);
@@ -65,16 +38,28 @@ public class UnsubManagerFileReader
                 subscribers.add(newSubscriber);
                 line = bufRdr.readLine();
             }//END WHILE
+            bufRdr.close();
         }//END TRY
         catch(IOException ioex)
         {
-            throw ioex;
+            if(bufRdr != null)
+            {
+                try
+                {
+                    bufRdr.close();
+                }//END TRY
+                catch(IOException ioex2)
+                {
+                    //Can't do anything more
+                }//END CATCH
+            }//ENDIF
+            System.out.println("There was an error with reading the Unsubscription File.");
         }//END CATCH
         return subscribers;
     }//END readUnsubscribeFile
 
 
-    public List<Subscriber> readStringsFromFile(String inFilename) throws IOException
+    public static List<Subscriber> readStringsFromFile(String inFilename)
     {
         List<Subscriber> subscribers = new ArrayList<>();
         Path pathToFile = Paths.get(inFilename);
@@ -85,7 +70,8 @@ public class UnsubManagerFileReader
         {
             //Read the first line of the csv file
             String line = bufRdr.readLine();
-
+            line = bufRdr.readLine();//Skip the first line.
+            
             //Loop until all lines in the file are read
             while(line != null)
             {
@@ -94,16 +80,34 @@ public class UnsubManagerFileReader
                 subscribers.add(newSubscriber);
                 line = bufRdr.readLine();
             }//END WHILE
+            bufRdr.close();
         }//END TRY
         catch(IOException ioex)
         {
-            throw ioex;
+            if(bufRdr != null)
+            {
+                try
+                {
+                    bufRdr.close();
+                }//END TRY
+                catch(IOException ioex2)
+                {
+                    //Can't do anything more
+                }//END CATCH
+            }//ENDIF
+            System.out.println("There was an error with reading the Subscription list: "+inFilename);
         }//END CATCH
         return subscribers;
     }//END readStringsFromFile
 
+    private static String cleanUpEmail(String inString)
+    {
+        StringBuilder cleanEmail = new StringBuilder(inString);
+        String email = cleanEmail.toString().replace("\"","");
+        return email;
+    }//END cleanUpEmail
 
-    private boolean validateFileName(String inFilename)
+    private static boolean validateFileName(String inFilename)
     {
         boolean isValid = false;
         Path pathToFile = Paths.get(inFilename)
@@ -113,6 +117,6 @@ public class UnsubManagerFileReader
             isValid = true;
         }//ENDIF
         return isValid
-    }
+    }//END validateFileName
 
 }//END class FileReader
