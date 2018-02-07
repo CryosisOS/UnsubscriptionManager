@@ -25,7 +25,6 @@ public class UserInput
             {
                 out.print(prompt);
                 input = sc.nextInt();
-                sc.flush();
                 cont = false;
             }//END TRY
             catch(InputMismatchException imex)
@@ -46,7 +45,6 @@ public class UserInput
 
         out.print(prompt);
         input = sc.next();
-        out.println(input);
         return input;
     }//END getString
 }//END class UserInput

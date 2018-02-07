@@ -14,7 +14,7 @@ public class UnsubManagerSubList
     {
         List<Subscriber> subscriberList = new ArrayList<Subscriber>();
 
-        for(int ii=0;ii<=inSubscriberFileLists.length;ii++)
+        for(int ii=0;ii<inSubscriberFileLists.length;ii++)
         {
             subscriberList.addAll(inSubscriberFileLists[ii]);
         }//ENDFOR

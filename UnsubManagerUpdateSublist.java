@@ -6,19 +6,27 @@
 
 //IMPORTS
 import java.util.List;
-import java.util.Iterator;
+import java.util.ArrayList;
 
 public class UnsubManagerUpdateSublist
 {
     public static List<Subscriber> updateList(List<Subscriber> unSubList, List<Subscriber> subList)
     {
-        int ii = 0;
-        for(Iterator<Subscriber> iterator = subList.iterator();iterator.hasNext(); ii++)
+        List<Integer> indexToDelete = new ArrayList<Integer>();
+
+        for(int ii=0;ii<unSubList.size();ii++)
         {
-            if(iterator.next().getEmail().equals(unSubList.get(ii).getEmail()))
+            for(int jj=0;jj<subList.size();jj++)
             {
-                iterator.remove();
-            }//ENDIF
+                if(unSubList.get(ii).getEmail().equals(subList.get(jj).getEmail()))
+                {
+                    indexToDelete.add(jj);
+                }//ENDIF
+            }//END FOR
+        }//END FOR
+        for(int ii=0;ii<indexToDelete.size();ii++)
+        {
+            subList.remove(indexToDelete.get(ii));
         }//END FOR
         return subList;
     }//END upateList

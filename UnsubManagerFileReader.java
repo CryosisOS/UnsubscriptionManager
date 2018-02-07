@@ -61,9 +61,9 @@ public class UnsubManagerFileReader
     }//END readUnsubscribeFile
 
 
-    public static List<Subscriber> readStringsFromFile(String inFilename)
+    public static ArrayList<Subscriber> readStringsFromFile(String inFilename)
     {
-        List<Subscriber> subscribers = new ArrayList<>();
+        ArrayList<Subscriber> subscribers = new ArrayList<>();
         Path pathToFile = Paths.get(inFilename);
         BufferedReader bufRdr = null;
 

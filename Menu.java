@@ -38,7 +38,7 @@ public class Menu
         subLists = new ArrayList[subFiles.length];
         for(int ii=0;ii<subFiles.length;ii++)
         {
-            subLists[ii].addAll(UnsubManagerFileReader.readStringsFromFile(subFiles[ii]));
+            subLists[ii] = UnsubManagerFileReader.readStringsFromFile(subFiles[ii]);
         }//END FOR
         subList = UnsubManagerSubList.createSubList(subLists);
         subList = UnsubManagerUpdateSublist.updateList(unSubList, subList);
