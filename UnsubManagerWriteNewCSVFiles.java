@@ -24,7 +24,7 @@ public class UnsubManagerWriteNewCSVFiles
         String filename;
         ArrayList<Subscriber>[] subLists = (ArrayList<Subscriber>[])new ArrayList[numFiles];
 
-        if(newSubList.size() < 5300)
+        if(newSubList.size() > 5300)
         {
             numFiles = length / 5300;
             newLength = length / numFiles;
@@ -43,7 +43,7 @@ public class UnsubManagerWriteNewCSVFiles
                         {
                             break;
                         }//ENDIF
-                        subLists[ii].add(new Subscriber("something"/*newSubList.get(0)*/));
+                        subLists[ii].add(newSubList.get(0));
                         newSubList.remove(0);
                         size++;
                     }//ENDIF
