@@ -48,8 +48,8 @@ public class Subscriber
 		cellphone = inDetails[7];
 		freecall = inDetails[8];
 		email = inDetails[9];
-		abn = inDetails[9];
-		industry = inDetails[10];
+		abn = inDetails[10];
+		industry = inDetails[11];
 	}//END ALTERNATE CONSTRUCTOR #2
 
 	public String getEmail()

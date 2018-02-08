@@ -15,49 +15,14 @@ import static java.lang.System.out;
 
 public class UnsubManagerWriteNewCSVFiles
 {
-    public static void sortListToWrite(List<Subscriber> newSubList)
+    public static void sortListToWrite(Subscriber[] newSubList)
     {
-        int length = newSubList.size();
-        int numFiles = 1;
-        int newLength = newSubList.size();
-        int size = 0;
         String filename;
-        ArrayList<Subscriber>[] subLists = (ArrayList<Subscriber>[])new ArrayList[numFiles];
-
-        if(newSubList.size() > 5300)
-        {
-            numFiles = length / 5300;
-            newLength = length / numFiles;
-            subLists = (ArrayList<Subscriber>[])new ArrayList[numFiles];
-        }//ENDIF
-
-        while(newSubList.size() != 0)
-        {
-            if(newLength <= newSubList.size())
-            {
-                for(int ii=0;ii<=subLists.length;ii++)
-                {
-                    if(size < newLength)
-                    {
-                        if(newSubList.size() == 0)
-                        {
-                            break;
-                        }//ENDIF
-                        subLists[ii].add(newSubList.get(0));
-                        newSubList.remove(0);
-                        size++;
-                    }//ENDIF
-                }//END FOR
-            }//ENDIF
-        }//END WHILE
-        for (int ii=0;ii<subLists.length;ii++)
-        {
-            filename = "OutputFile"+ii+".csv";
-            writeListToFile((List<Subscriber>)subLists[ii], filename);
-        }//ENDFOR
+        filename = "OutputFile.csv";
+        writeListToFile(newSubList, filename);
     }//END writeNewFiles
 
-    public static void writeListToFile(List<Subscriber> inList, String filename)
+    public static void writeListToFile(Subscriber [] inSubList, String filename)
     {
         BufferedWriter bufWtr = null;
         FileWriter fileWtr = null;
@@ -66,9 +31,12 @@ public class UnsubManagerWriteNewCSVFiles
         {
             fileWtr = new FileWriter(filename);
             bufWtr = new BufferedWriter(fileWtr);
-            for(int ii=0;ii<inList.size();ii++)
+            for(int ii=0;ii<inSubList.length;ii++)
             {
-                bufWtr.write(inList.get(ii).toString());
+                if(inSubList[ii]!=null)
+                {
+                    bufWtr.write(inSubList[ii].toString()+"\n");
+                }//ENDIF
             }//END FOR
             bufWtr.close();
         }//END TRY
@@ -86,6 +54,7 @@ public class UnsubManagerWriteNewCSVFiles
                 }//END CATCH
             }//END IF
             out.print("There was a problem with writing to the file.\n");
+            ioex.printStackTrace();
         }//END CATCH
     }//END writeListToFile
 }//END class UnsubManagerWriteNewCSVFiles

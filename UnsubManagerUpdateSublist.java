@@ -10,24 +10,31 @@ import java.util.ArrayList;
 
 public class UnsubManagerUpdateSublist
 {
-    public static List<Subscriber> updateList(List<Subscriber> unSubList, List<Subscriber> subList)
+    public static void updateList(List<Subscriber> unSubList, List<Subscriber> subList)
     {
-        List<Integer> indexToDelete = new ArrayList<Integer>();
+        int [] indexToDelete = new int[unSubList.size()];
+        Subscriber [] sublist = new Subscriber[subList.size()];
+
+        for(int ii=0;ii<sublist.length;ii++)
+        {
+            sublist[ii] = subList.get(ii);
+        }//ENDFOR
 
         for(int ii=0;ii<unSubList.size();ii++)
         {
-            for(int jj=0;jj<subList.size();jj++)
+            for(int jj=0;jj<sublist.length;jj++)
             {
                 if(unSubList.get(ii).getEmail().equals(subList.get(jj).getEmail()))
                 {
-                    indexToDelete.add(jj);
+                    indexToDelete[ii] = jj;
                 }//ENDIF
             }//END FOR
         }//END FOR
-        for(int ii=0;ii<indexToDelete.size();ii++)
+        for(int ii=0;ii<indexToDelete.length;ii++)
         {
-            subList.remove(indexToDelete.get(ii));
+            sublist[indexToDelete[ii]] = null;
         }//END FOR
-        return subList;
+        System.out.print("Files being processed to write.\n");
+        UnsubManagerWriteNewCSVFiles.sortListToWrite(sublist);
     }//END upateList
 }//END class UnsubManagerUpdateSublist

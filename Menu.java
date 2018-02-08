@@ -41,8 +41,11 @@ public class Menu
             subLists[ii] = UnsubManagerFileReader.readStringsFromFile(subFiles[ii]);
         }//END FOR
         subList = UnsubManagerSubList.createSubList(subLists);
-        subList = UnsubManagerUpdateSublist.updateList(unSubList, subList);
-        UnsubManagerWriteNewCSVFiles.sortListToWrite(subList);
+        UnsubManagerUpdateSublist.updateList(unSubList, subList);
+        out.print("File has been written.\n");
+        out.print("------------------------------------------------------------------------------\n");
+        out.print("                               Process Finished                               \n");
+        out.print("------------------------------------------------------------------------------\n");
 
     }//END getLists
 }//END class Menu
